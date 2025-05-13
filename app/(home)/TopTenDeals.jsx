@@ -65,6 +65,12 @@ export default function TopTenDeals() {
 
 
                 </div>
+                <button className="p-[3px] relative my-7">
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+                    <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+                        For More Product Deals
+                    </div>
+                </button>
 
             </div>
 
