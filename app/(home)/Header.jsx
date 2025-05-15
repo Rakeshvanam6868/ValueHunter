@@ -50,7 +50,7 @@ export default function Header() {
               <MenubarMenu>
                 <MenubarTrigger asChild>
                   <a href="/products" className="cursor-pointer hover:text-primary transition-colors">
-                    Products
+                    Deals
                   </a>
                 </MenubarTrigger>
               </MenubarMenu>
