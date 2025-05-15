@@ -23,6 +23,6 @@ export async function GET(request) {
     return Response.json(deals);
   } catch (error) {
     console.error("Error fetching deals:", error);
-    return Response.json({ error: "Failed to fetch deals" }, { status: 500 });
+    return Response.json({ error: "Failed to  deals" }, { status: 500 });
   }
 }
