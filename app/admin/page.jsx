@@ -23,7 +23,7 @@ export default function AdminPanel() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white dark:bg-gray-800 rounded shadow">
+    <div className="max-w-xl mx-auto p-6 bg-white dark:bg-gray-800 rounded mt-10 shadow">
       <h1 className="text-2xl font-bold mb-6">Add New Deal</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Form Inputs */}
@@ -32,11 +32,12 @@ export default function AdminPanel() {
         <input name="originalPrice" type="number" placeholder="Original Price" step="0.01" required className="w-full p-2 border rounded" />
         <input name="discountedPrice" type="number" placeholder="Discounted Price" step="0.01" required className="w-full p-2 border rounded" />
         <input name="discountPercentage" type="number" placeholder="Discount %" required className="w-full p-2 border rounded" />
-        <input name="timeAgo" placeholder="Time Ago (e.g., 1 hour ago)" className="w-full p-2 border rounded" />
-        <label className="flex items-center gap-2">
+        <input name="link" placeholder="link" required className="w-full p-2 border rounded" />
+        <input name="rating" type="number" placeholder="Rating" step="0.1" required className="w-full p-2 border rounded" />
+        {/* <label className="flex items-center gap-2">
           <input type="checkbox" name="isTopDeal" />
           <span>Mark as Top Deal</span>
-        </label>
+        </label> */}
         <button
           type="submit"
           disabled={loading}

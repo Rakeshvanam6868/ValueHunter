@@ -1,14 +1,11 @@
 const TelegramBot = require("node-telegram-bot-api");
 
-// Initialize bot
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: false });
-
-// Telegram chat ID from .env
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 /**
- * Sends a deal to Telegram with image and formatted caption
- * @param {Object} deal - Deal object with name, imageSrc, etc.
+ * Sends a stylized deal card to Telegram with button
+ * @param {Object} deal - Deal object
  */
 const postToTelegram = async (deal) => {
   if (!TELEGRAM_CHAT_ID || !process.env.TELEGRAM_BOT_TOKEN) {
@@ -16,29 +13,45 @@ const postToTelegram = async (deal) => {
     return;
   }
 
-  const offer = deal.discountPercentage;
-  const title = deal.name;
-  const originalPrice = deal.originalPrice.toFixed(2);
-  const price = deal.discountedPrice.toFixed(2);
-  const link = `${process.env.NEXT_PUBLIC_SITE_URL}/deals/${deal.id}`;
-  const image = deal.imageSrc;
+  const { name, imageSrc, originalPrice, discountedPrice, discountPercentage, link} = deal;
+
+  const formattedOriginal = Number(originalPrice).toLocaleString("en-IN", {
+    minimumFractionDigits: 2,
+  });
+  const formattedDiscounted = Number(discountedPrice).toLocaleString("en-IN", {
+    minimumFractionDigits: 2,
+  });
+
+  // const link = `https://amzn.to/4jT4ipE`;
 
   const caption = `
-🛍️ *${title}*  
-🎯 ${offer}% OFF!  
+🎉 <b>🔥 HOT DEAL ALERT 🔥</b>
 
-💰 MRP: ₹${originalPrice}  
-💸 Deal Price: ₹${price}  
-🔗 [👉 Buy Now](${link})
+🛍️ <b>${name}</b>
+
+❌ <s>MRP:</s> ₹${formattedOriginal}
+
+💰 <b>Deal Price:</b> ₹${formattedDiscounted}
+🎯 <b>${discountPercentage}% OFF</b>
 `;
 
   try {
-    await bot.sendPhoto(TELEGRAM_CHAT_ID, image, {
+    await bot.sendPhoto(TELEGRAM_CHAT_ID, imageSrc, {
       caption,
-      parse_mode: "Markdown",
-      disable_web_page_preview: true,
+      parse_mode: "HTML",
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {
+              text: "🛒 Buy Now",
+              url: link,
+            },
+          ],
+        ],
+      },
     });
-    console.log("✅ Posted to Telegram:", title);
+
+    console.log("✅ Posted to Telegram:", name);
   } catch (error) {
     console.error("❌ Failed to send to Telegram:", error.message);
   }

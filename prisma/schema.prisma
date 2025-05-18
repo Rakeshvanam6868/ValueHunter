@@ -14,14 +14,16 @@ datasource db {
 }
 
 model Deal {
-  id               Int       @id @default(autoincrement())
-  name             String
-  imageSrc         String
-  originalPrice    Float
-  discountedPrice  Float
+  id                 Int      @id @default(autoincrement())
+  name               String
+  imageSrc           String
+  originalPrice      Float
+  discountedPrice    Float
   discountPercentage Int
-  timeAgo          String
-  isTopDeal        Boolean   @default(false)
-  expiresAt        DateTime
-  createdAt        DateTime  @default(now())
+  link               String?
+  rating             Float    @default(0)
+  isTopDeal          Boolean  @default(false) // auto-set by rating
+  timeAgo            String   @default("Just now")
+  expiresAt          DateTime
+  createdAt          DateTime @default(now())
 }

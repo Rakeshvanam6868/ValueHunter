@@ -1,6 +1,9 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import { postToTelegram } from "@/utils/telegramPoster";
+import { postToX } from "@/utils/xPoster";
+import { postToWhatsApp } from "@/utils/whatsappPoster";
+import { postToInstagram } from "@/utils/instagramPoster";
 
 export async function createDeal(formData) {
   const name = formData.get("name");
@@ -8,8 +11,9 @@ export async function createDeal(formData) {
   const originalPrice = parseFloat(formData.get("originalPrice"));
   const discountedPrice = parseFloat(formData.get("discountedPrice"));
   const discountPercentage = parseInt(formData.get("discountPercentage"));
-  const timeAgo = formData.get("timeAgo") || "Just now";
-  const isTopDeal = formData.get("isTopDeal") === "on";
+  const link = formData.get("link");
+  const rating = parseFloat(formData.get("rating"));
+  // const isTopDeal = formData.get("isTopDeal") === "on";
 
   // Validate inputs
   if (
@@ -17,7 +21,9 @@ export async function createDeal(formData) {
     !imageSrc ||
     isNaN(originalPrice) ||
     isNaN(discountedPrice) ||
-    isNaN(discountPercentage)
+    isNaN(discountPercentage)||
+    !(link)||
+    isNaN(rating)
   ) {
     throw new Error("All fields are required and must be valid.");
   }
@@ -32,14 +38,19 @@ export async function createDeal(formData) {
         originalPrice,
         discountedPrice,
         discountPercentage,
-        timeAgo,
-        isTopDeal,
+        link,
+        rating,
+        isTopDeal: rating >= 4.0,
         expiresAt,
       },
     });
 
     // Send to Telegram in parallel
     await postToTelegram(deal);
+    await postToX(deal);
+    // Inside try block after creating the deal
+    await postToWhatsApp(deal);
+    await postToInstagram(deal);
 
     return deal;
   } catch (error) {

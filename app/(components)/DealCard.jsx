@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MdUpdate } from "react-icons/md";
 import { Button } from "@/components/ui/button";
+import { timeAgo } from "@/utils/timeAgo";
 import {
   Card,
   CardContent,
@@ -18,7 +19,7 @@ export default function DealCard({ deal }) {
     originalPrice = 0,
     discountedPrice = 0,
     discountPercentage = 0,
-    timeAgo = "Just now",
+    createdAt,
   } = deal;
 
   return (
@@ -46,17 +47,17 @@ export default function DealCard({ deal }) {
             <p className="text-green-500 font-semibold">{discountPercentage}% OFF</p>
             <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
               <MdUpdate />
-              <span>{timeAgo}</span>
+              <span>{timeAgo(createdAt)}</span>
             </div>
           </div>
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline" size="sm" className="text-xs">
+        {/* <Button variant="outline" size="sm" className="text-xs">
           PRICE HISTORY
-        </Button>
-        <Button size="sm" className="text-xs">
-          BUY
+        </Button> */}
+        <Button size="sm" className="text-xs" asChild>
+          <a href={deal.link} target="_blank" rel="noopener noreferrer">BUY</a>
         </Button>
       </CardFooter>
     </Card>
