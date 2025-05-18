@@ -18,11 +18,7 @@ export default function Home1() {
         title="70%+ Off"
         filter={{ minDiscount: 70 }}
       />
-
-      <DealsSection
-        title="All Deals"
-        filter={{}}
-      />
+    
     </>
   );
 }

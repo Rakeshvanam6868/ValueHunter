@@ -30,7 +30,7 @@ export default function DealCard({ deal }) {
           alt={name || "Deal Image"}
           width={300}
           height={300}
-          className="object-contain rounded-lg w-full h-auto"
+          className="object-contain rounded-xl w-full h-[220px]"
           onError={(e) => {
             e.target.src = "/fallback-image.jpg"; // Fallback on error
           }}

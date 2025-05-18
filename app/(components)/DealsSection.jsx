@@ -62,12 +62,12 @@ export default function DealsSection({   title, filter = {}, loadingFallback = "
   }
 
   return (
-    <div className="flex flex-col items-center justify-center mt-10 px-4">
+    <div className="flex flex-col items-center justify-center mt-10 mb-10 px-4">
     <BackgroundGradient className="px-20 py-3 rounded-lg flex items-center justify-center overflow-hidden">
        <h1 className="text-center text-white font-bold text-[20px]">{title}</h1>
     </BackgroundGradient>
 
-      <div className="w-full max-w-6xl">
+      <div className="w-full max-w-6xl mt-10">
         <Carousel opts={{ align: "start", loop: false }} className="w-full">
           <CarouselContent>
             {deals.map((item) => (

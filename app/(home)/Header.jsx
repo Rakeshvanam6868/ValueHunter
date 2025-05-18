@@ -39,7 +39,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
-            <Menubar className="bg-transparent space-x-6 text-sm -ml-24 font-medium">
+            <Menubar className="bg-transparent space-x-6 text-xl -ml-24 font-bold">
               <MenubarMenu>
                 <MenubarTrigger asChild>
                   <a href="/" className="cursor-pointer hover:text-primary transition-colors">
@@ -49,7 +49,7 @@ export default function Header() {
               </MenubarMenu>
               <MenubarMenu>
                 <MenubarTrigger asChild>
-                  <a href="/products" className="cursor-pointer hover:text-primary transition-colors">
+                  <a href="/deals" className="cursor-pointer hover:text-primary transition-colors">
                     Deals
                   </a>
                 </MenubarTrigger>
