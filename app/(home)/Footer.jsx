@@ -2,15 +2,10 @@
 import { FloatingDock } from "@/components/ui/floating-dock";
 import Image from "next/image";
 import {
-    IconBrandGithub,
     IconBrandInstagram,
     IconBrandTelegram,
     IconBrandWhatsapp,
     IconBrandX,
-    IconExchange,
-    IconHome,
-    IconNewSection,
-    IconTerminal2,
 } from "@tabler/icons-react";
 
 
@@ -50,8 +45,8 @@ export default function Footer() {
     return (
         <>
             <nav className="w-full backdrop-blur-md bg-gradient-to-r from-[#d4e0e6] to-[#e9dbdb] dark:from-[#141a1d] dark:to-[#0e0d0d] border-b border-border">
-                <div className="grid grid-cols-[40%_60%] ">
-                    <div className="py-10 pl-20 flex flex-col items-start gap-5 ">
+                <div className="grid  sm:grid-cols-1 md:grid-cols-[40%_60%] lg:grid-cols-[40%_60%] xl:grid-cols-[40%_60%]">
+                    <div className="py-10 pl-10 sm:pl-10 md:pl-10 lg:pl-20 xl:pl-20 flex flex-col items-start gap-5 ">
                         {/* Logo - Always Visible */}
                         <div className="flex items-center gap-3">
                             <Image
@@ -70,13 +65,13 @@ export default function Footer() {
                         </div>
 
                         <div className="pt-5 w-[70%]">
-                            ValueHunter is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.in
+                            ValueHunter regularly shares links to products we genuinely recommend based on research and usefulness. These are carefully selected to help you make informed choices nothing is promoted without purpose or your best interest in mind.
                         </div>
 
 
 
                     </div>
-                    <div className="flex justify-around items-center">
+                    <div className="flex mb-5 justify-around items-center">
                         <div className="flex flex-col gap-3">
                            <h6>Product</h6>
                            <p>Home</p>

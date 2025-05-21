@@ -114,8 +114,8 @@ export default function Header() {
                   <a href="/" onClick={() => setOpen(false)} className="block text-lg font-medium hover:text-primary transition-colors">
                     Home
                   </a>
-                  <a href="/products" onClick={() => setOpen(false)} className="block text-lg font-medium hover:text-primary transition-colors">
-                    Products
+                  <a href="/deals" onClick={() => setOpen(false)} className="block text-lg font-medium hover:text-primary transition-colors">
+                    Deals
                   </a>
                   <a href="/blogs" onClick={() => setOpen(false)} className="block text-lg font-medium hover:text-primary transition-colors">
                     Blogs

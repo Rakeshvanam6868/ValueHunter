@@ -56,7 +56,7 @@ export default function DealCard({ deal }) {
         {/* <Button variant="outline" size="sm" className="text-xs">
           PRICE HISTORY
         </Button> */}
-        <Button size="sm" className="text-xs" asChild>
+        <Button  size="sm" className="text-xs w-full" asChild>
           <a href={deal.link} target="_blank" rel="noopener noreferrer">BUY</a>
         </Button>
       </CardFooter>

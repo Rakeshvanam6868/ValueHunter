@@ -46,10 +46,10 @@ export async function createDeal(formData) {
     });
 
     // Send to Telegram in parallel
-    await postToTelegram(deal);
-    await postToX(deal);
+    // await postToTelegram(deal);
+    // await postToX(deal);
     // Inside try block after creating the deal
-    await postToWhatsApp(deal);
+    // await postToWhatsApp(deal);
     await postToInstagram(deal);
 
     return deal;
