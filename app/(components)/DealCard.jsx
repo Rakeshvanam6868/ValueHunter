@@ -23,7 +23,7 @@ export default function DealCard({ deal }) {
   } = deal;
 
   return (
-    <Card className="w-full  dark:from-gray-800 dark:to-dark:bg-[#141a1d]  bg-gradient-to-br from-white to-gray-200 max-w-[330px] mx-auto shadow-md hover:shadow-lg transition-shadow">
+    <Card className="w-full  dark:from-[#232d32] dark:to-dark:bg-[#141a1d]  bg-gradient-to-br from-white to-gray-200 max-w-[330px] mx-auto shadow-md hover:shadow-lg transition-shadow">
       <CardHeader>
         <Image
           src={imageSrc}
