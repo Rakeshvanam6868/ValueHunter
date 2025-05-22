@@ -56,14 +56,14 @@ export default function Header() {
               </MenubarMenu>
               <MenubarMenu>
                 <MenubarTrigger asChild>
-                  <a href="/blogs" className="cursor-pointer hover:text-primary transition-colors">
+                  <a href="/" className="cursor-pointer hover:text-primary transition-colors">
                     Blogs
                   </a>
                 </MenubarTrigger>
               </MenubarMenu>
               <MenubarMenu>
                 <MenubarTrigger asChild>
-                  <a href="/contact" className="cursor-pointer hover:text-primary transition-colors">
+                  <a href="/" className="cursor-pointer hover:text-primary transition-colors">
                     Contact
                   </a>
                 </MenubarTrigger>
@@ -79,13 +79,14 @@ export default function Header() {
             </div>
 
             <div className="hidden md:block">
-              <DropdownMenu>
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png " />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger asChild>
 
-                  <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png " />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
+                 
 
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
@@ -99,7 +100,7 @@ export default function Header() {
                     System
                   </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </div>
 
             {/* Mobile Menu Trigger */}
@@ -131,15 +132,16 @@ export default function Header() {
                     </div>
 
                     {/* Avatar + Profile Dropdown inside Sheet */}
-                    <DropdownMenu>
+                    <div className="flex items-center gap-3 cursor-pointer p-2 rounded-md hover:bg-muted">
+                      <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png " />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                      <span>Profile</span>
+                    </div>
+                    {/* <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <div className="flex items-center gap-3 cursor-pointer p-2 rounded-md hover:bg-muted">
-                          <Avatar>
-                            <AvatarImage src="https://github.com/shadcn.png " />
-                            <AvatarFallback>CN</AvatarFallback>
-                          </Avatar>
-                          <span>Profile</span>
-                        </div>
+                        
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="start">
                         <DropdownMenuItem onClick={() => console.log("Light theme")}>
@@ -152,7 +154,7 @@ export default function Header() {
                           System
                         </DropdownMenuItem>
                       </DropdownMenuContent>
-                    </DropdownMenu>
+                    </DropdownMenu> */}
                   </div>
                 </nav>
               </SheetContent>

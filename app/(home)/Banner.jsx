@@ -13,7 +13,7 @@ import 'swiper/css/autoplay';
 export default function Banner() {
   return (
     <div className="flex items-center justify-center py-6">
-      <div className="grid w-full sm:w-[90%] md:w-[75%] sm:grid-cols-1 md:grid-cols-[70%_30%] lg:grid-cols-[70%_30%] xl:grid-cols-[70%_30%] gap-6">
+      <div className="grid w-[95%] sm:w-[95%] md:w-[75%] lg:w-[75%] xl:w-[75%] sm:grid-cols-1 md:grid-cols-[70%_30%] lg:grid-cols-[70%_30%] xl:grid-cols-[70%_30%] gap-6">
         
         {/* Left Column - Swiper Carousel */}
         <div className="relative overflow-hidden rounded-xl">
