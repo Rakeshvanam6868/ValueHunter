@@ -57,6 +57,13 @@ export default function Header() {
               <MenubarMenu>
                 <MenubarTrigger asChild>
                   <a href="/" className="cursor-pointer hover:text-primary transition-colors">
+                    Categories
+                  </a>
+                </MenubarTrigger>
+              </MenubarMenu>
+              <MenubarMenu>    
+                <MenubarTrigger asChild>
+                  <a href="/" className="cursor-pointer hover:text-primary transition-colors">
                     Blogs
                   </a>
                 </MenubarTrigger>
@@ -64,10 +71,11 @@ export default function Header() {
               <MenubarMenu>
                 <MenubarTrigger asChild>
                   <a href="/" className="cursor-pointer hover:text-primary transition-colors">
-                    Contact
+                    Instagram Products
                   </a>
                 </MenubarTrigger>
               </MenubarMenu>
+              
             </Menubar>
           </nav>
 

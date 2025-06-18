@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -17,29 +16,55 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import DealCard from "../(components)/DealCard";
-import { dealsData } from "../../utils/data/TopTenDeals";
 
 export default function Deals() {
   const [priceRange, setPriceRange] = useState({ min: "", max: "" });
   const [discountRange, setDiscountRange] = useState({ min: "", max: "" });
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("trending");
+  const [deals, setDeals] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // Mock categories
   const categories = [
-    {
-      name: "Beauty & Health",
-      subcategories: ["Personal Care", "Make-up", "Health Care", "Hair Care", "Diet Supplements"],
-    },
-    {
-      name: "Fashion",
-      subcategories: ["Women", "Men", "Accessories", "Footwear"],
-    },
-    {
-      name: "Electronics",
-      subcategories: ["Phones", "Laptops", "Wearables", "Audio"],
-    },
+    { name: "Beauty & Health" },
+    { name: "Fashion" },
+    { name: "Electronics" },
+    { name: "Home & Kitchen" },
+    { name: "Sports & Fitness" },
   ];
+
+  // Fetch deals from API based on filters
+  useEffect(() => {
+    const fetchDeals = async () => {
+      setLoading(true);
+      const url = new URL("/api/deals", window.location.origin);
+
+      if (selectedCategory) url.searchParams.set("category", selectedCategory);
+      if (priceRange.min) url.searchParams.set("minPrice", priceRange.min);
+      if (priceRange.max) url.searchParams.set("maxPrice", priceRange.max);
+      if (discountRange.min)
+        url.searchParams.set("minDiscount", discountRange.min);
+      if (discountRange.max)
+        url.searchParams.set("maxDiscount", discountRange.max);
+      if (searchTerm) url.searchParams.set("search", searchTerm);
+      if (sortBy) url.searchParams.set("sortBy", sortBy);
+
+      try {
+        const res = await fetch(url.toString());
+        const data = await res.json();
+        setDeals(data);
+      } catch (error) {
+        console.error("Error fetching deals:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDeals();
+  }, [selectedCategory, priceRange, discountRange, searchTerm, sortBy]);
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black/30 transition-colors duration-300 px-6 py-12">
@@ -52,21 +77,12 @@ export default function Deals() {
           <Accordion type="multiple" className="w-full space-y-2">
             {categories.map((category, idx) => (
               <AccordionItem key={idx} value={`item-${idx}`} className="border-b-0">
-                <AccordionTrigger className="font-medium text-sm text-gray-700 dark:text-gray-300">
+                <AccordionTrigger
+                  onClick={() => setSelectedCategory(category.name)}
+                  className="font-medium text-sm text-gray-700 dark:text-gray-300 cursor-pointer"
+                >
                   {category.name}
                 </AccordionTrigger>
-                <AccordionContent>
-                  <ul className="pl-4 space-y-1">
-                    {category.subcategories.map((sub, i) => (
-                      <li
-                        key={i}
-                        className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition"
-                      >
-                        {sub}
-                      </li>
-                    ))}
-                  </ul>
-                </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
@@ -138,14 +154,16 @@ export default function Deals() {
         <main>
           <header className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 dark:from-purple-400 dark:to-blue-300 text-transparent bg-clip-text">
-              Beauty & Health Deals
+              {selectedCategory || "All Deals"}
             </h1>
             <div className="flex items-center gap-4">
               <Input
                 placeholder="Search in deals..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="max-w-sm bg-white dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
               />
-              <Select defaultValue="trending">
+              <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className="w-[160px] bg-white dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200">
                   <SelectValue placeholder="Sort By" />
                 </SelectTrigger>
@@ -158,12 +176,18 @@ export default function Deals() {
             </div>
           </header>
 
-          {/* Deals Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {dealsData.map((deal, index) => (
-              <DealCard key={index} deal={deal} />
-            ))}
-          </div>
+          {/* Loading State */}
+          {loading ? (
+            <p className="text-center text-gray-500">Loading deals...</p>
+          ) : deals.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {deals.map((deal, index) => (
+                <DealCard key={index} deal={deal} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-500">No deals found.</p>
+          )}
         </main>
       </div>
     </div>
