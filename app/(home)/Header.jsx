@@ -61,9 +61,9 @@ export default function Header() {
                   </a>
                 </MenubarTrigger>
               </MenubarMenu>
-              <MenubarMenu>    
+              <MenubarMenu>
                 <MenubarTrigger asChild>
-                  <a href="/" className="cursor-pointer hover:text-primary transition-colors">
+                  <a href="/blogs" className="cursor-pointer hover:text-primary transition-colors">
                     Blogs
                   </a>
                 </MenubarTrigger>
