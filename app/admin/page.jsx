@@ -8,7 +8,7 @@ export default function AdminPanel() {
   const [enteredPassword, setEnteredPassword] = useState(false);
   const [password, setPassword] = useState("");
 
-  const ADMIN_PASSWORD =process.env.NEXT_PUBLIC_ADMIN_PASSWORD; // Change this to your desired password
+  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD; // Change this to your desired password
 
 
   const handlePasswordSubmit = (e) => {
@@ -71,7 +71,15 @@ export default function AdminPanel() {
             <input name="discountPercentage" type="number" placeholder="Discount %" required className="w-full p-2 border rounded" />
             <input name="link" placeholder="Link" required className="w-full p-2 border rounded" />
             <input name="rating" type="number" placeholder="Rating" step="0.1" required className="w-full p-2 border rounded" />
-
+            <label htmlFor="category">Category</label>
+            <select id="category" name="category" className="border p-2 mb-4 w-full">
+              <option value="">Select Category</option>
+              <option value="Beauty & Health">Beauty & Health</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Electronics">Electronics</option>
+            </select>
+            <label htmlFor="tags">Tags (comma-separated)</label>
+            <input type="text" id="tags" name="tags" placeholder="e.g. laptop, gaming, 50% off" className="border p-2 mb-4 w-full" />
             <button
               type="submit"
               disabled={loading}

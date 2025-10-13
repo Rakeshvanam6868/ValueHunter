@@ -24,6 +24,16 @@ model Deal {
   rating             Float    @default(0)
   isTopDeal          Boolean  @default(false) // auto-set by rating
   timeAgo            String   @default("Just now")
+  tags               String[]
+  category           String?
   expiresAt          DateTime
   createdAt          DateTime @default(now())
+}
+
+model InstaCard {
+  id        Int      @id @default(autoincrement())
+  title     String
+  image     String
+  link      String
+  createdAt DateTime @default(now())
 }

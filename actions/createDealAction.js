@@ -13,6 +13,8 @@ export async function createDeal(formData) {
   const discountPercentage = parseInt(formData.get("discountPercentage"));
   const link = formData.get("link");
   const rating = parseFloat(formData.get("rating"));
+  const tags = formData.get("tags")?.split(",")?.map(tag => tag.trim()) || [];
+  const category = formData.get("category");
   // const isTopDeal = formData.get("isTopDeal") === "on";
 
   // Validate inputs
@@ -30,6 +32,7 @@ export async function createDeal(formData) {
 
   const expiresAt = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000); // 2 weeks
 
+  
   try {
     const deal = await prisma.deal.create({
       data: {
@@ -42,6 +45,8 @@ export async function createDeal(formData) {
         rating,
         isTopDeal: rating >= 4.0,
         expiresAt,
+        category,
+        tags,
       },
     });
 

@@ -120,5 +120,35 @@ export const dealsData = [
     discountPercentage: 58,
     timeAgo: "1 hour ago",
     imageSrc: "/logo.png"
+  },
+  {
+    id: 13,
+    name: "Foldable Backpack",
+    description: "Lightweight foldable backpack ideal for travel and daily use.",
+    originalPrice: 599,
+    discountedPrice: 249,
+    discountPercentage: 58,
+    timeAgo: "1 hour ago",
+    imageSrc: "/logo.png"
+  },
+  {
+    id: 14,
+    name: "Ceramic Coffee Mug",
+    description: "Durable ceramic mug perfect for coffee lovers.",
+    originalPrice: 199,
+    discountedPrice: 79,
+    discountPercentage: 60,
+    timeAgo: "2 hours ago",
+    imageSrc: "/logo.png"
+  },
+  {
+    id: 155,
+    name: "Foldable Backpack",
+    description: "Lightweight foldable backpack ideal for travel and daily use.",
+    originalPrice: 599,
+    discountedPrice: 249,
+    discountPercentage: 58,
+    timeAgo: "1 hour ago",
+    imageSrc: "/logo.png"
   }
 ];
