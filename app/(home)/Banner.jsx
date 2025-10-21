@@ -25,7 +25,7 @@ export default function Banner() {
             loop={true}
             className="h-[220px] rounded-xl"
           >
-            <SwiperSlide>
+            {/* <SwiperSlide>
               <Image
                 src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T1/images/G/31/IMG25/Sports/May/IPL/Pc_header_-_IPL_store_2025_1.jpg "
                 alt="Banner 1"
@@ -51,7 +51,7 @@ export default function Banner() {
                 height={220}
                 className="object-cover w-full h-full rounded-xl"
               />
-            </SwiperSlide>
+            </SwiperSlide> */}
           </Swiper>
         </div>
 

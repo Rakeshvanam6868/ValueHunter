@@ -68,13 +68,6 @@ export default function Header() {
                   </a>
                 </MenubarTrigger>
               </MenubarMenu>
-              <MenubarMenu>
-                <MenubarTrigger asChild>
-                  <a href="/" className="cursor-pointer hover:text-primary transition-colors">
-                    Instagram Products
-                  </a>
-                </MenubarTrigger>
-              </MenubarMenu>
               
             </Menubar>
           </nav>

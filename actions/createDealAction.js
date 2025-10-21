@@ -1,9 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import { postToTelegram } from "@/utils/telegramPoster";
-import { postToX } from "@/utils/xPoster";
-import { postToWhatsApp } from "@/utils/whatsappPoster";
-import { postToInstagram } from "@/utils/instagramPoster";
 
 export async function createDeal(formData) {
   const name = formData.get("name");
@@ -50,12 +47,28 @@ export async function createDeal(formData) {
       },
     });
 
-    // Send to Telegram in parallel
+    // Send to Telegram in parallel (telegramPoster exists)
     await postToTelegram(deal);
-    // await postToX(deal);
-    // Inside try block after creating the deal
-    // await postToWhatsApp(deal);
-    // await postToInstagram(deal);
+
+    // Try optional social posters if they exist (dynamic import)
+    try {
+      const xMod = await import('@/utils/xPoster');
+      if (xMod?.postToX) await xMod.postToX(deal);
+    } catch (e) {
+      // ignore missing optional module
+    }
+    try {
+      const waMod = await import('@/utils/whatsappPoster');
+      if (waMod?.postToWhatsApp) await waMod.postToWhatsApp(deal);
+    } catch (e) {
+      // ignore missing optional module
+    }
+    try {
+      const igMod = await import('@/utils/instagramPoster');
+      if (igMod?.postToInstagram) await igMod.postToInstagram(deal);
+    } catch (e) {
+      // ignore missing optional module
+    }
 
     return deal;
   } catch (error) {

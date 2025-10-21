@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import DealCard from "../(components)/DealCard";
+import { Hero } from "@/components/HomePage/Hero";
 
 export default function Deals() {
   const [priceRange, setPriceRange] = useState({ min: "", max: "" });
@@ -67,7 +68,9 @@ export default function Deals() {
   }, [selectedCategory, priceRange, discountRange, searchTerm, sortBy]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-black/30 transition-colors duration-300 px-6 py-12">
+    <>
+      <Hero/>
+      <div className="min-h-screen bg-slate-50 dark:bg-black/30 transition-colors duration-300 px-6 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-[22%_76%] gap-8 mx-auto max-w-7xl">
         {/* Sidebar */}
         <aside className="space-y-4 backdrop-blur-xl bg-white/70 dark:bg-[#141a1d] p-6 rounded-2xl shadow-md border border-gray-200 dark:border-gray-800 lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] mt-10 lg:overflow-y-auto scrollbar-hide">
@@ -191,5 +194,7 @@ export default function Deals() {
         </main>
       </div>
     </div>
+    </>
+    
   );
 }
