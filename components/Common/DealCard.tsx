@@ -1,8 +1,9 @@
-import React from 'react';
-import  Link  from 'next/link';
+// components/Common/DealCard.tsx
+import Link from 'next/link';
 import { ExternalLink, ThumbsUp, Clock } from 'lucide-react';
-import { DealCountdown } from './DealCountdown';
 import Image from 'next/image';
+import { DealCountdown } from './DealCountdown';
+
 export interface DealProps {
   id: string;
   title: string;
@@ -13,12 +14,12 @@ export interface DealProps {
   image: string;
   merchant: string;
   merchantLogo: string;
-  category: string;
   expiryDate: string;
   popularity: number;
   isHot?: boolean;
   couponCode?: string;
 }
+
 export const DealCard = ({
   id,
   title,
@@ -32,67 +33,93 @@ export const DealCard = ({
   expiryDate,
   popularity,
   isHot,
-  couponCode
+  couponCode,
 }: DealProps) => {
-  return <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-      {/* Hot deal badge */}
-      {isHot && <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg z-10">
-          HOT DEAL
-        </div>}
-      {/* Deal image */}
-      <Link href={`/deal/${id}`} className="block relative">
-        <Image height={100} width={100} src={image} alt={title} className="w-full h-48 object-cover" />
-        <div className="absolute bottom-0 left-0 bg-indigo-600 text-white text-sm font-semibold px-2 py-1">
-          {discount}% OFF
+  return (
+    <div className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+      {/* Hot Deal Badge */}
+      {isHot && (
+        <div className="absolute top-3 right-3 z-10 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+          HOT
+        </div>
+      )}
+
+      {/* Image */}
+      <Link href={`/deal/${id}`} className="block">
+        <div className="relative h-48 overflow-hidden">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          {/* Discount Badge */}
+          <div className="absolute bottom-3 left-3 bg-indigo-600 text-white text-sm font-bold px-2 py-1 rounded-full shadow-md">
+            {discount}% OFF
+          </div>
         </div>
       </Link>
-      <div className="p-4">
-        {/* Merchant info */}
+
+      <div className="p-5">
+        {/* Merchant */}
         <div className="flex items-center mb-2">
-          <Image height={100} width={100} src={merchantLogo} alt={merchant} className="h-6 w-6 object-contain mr-2" />
-          <span className="text-sm text-gray-600">{merchant}</span>
+          <Image
+            src={merchantLogo}
+            alt={merchant}
+            width={24}
+            height={24}
+            className="h-6 w-6 object-contain mr-2"
+          />
+          <span className="text-xs font-medium text-gray-500">{merchant}</span>
         </div>
-        {/* Deal title */}
+
+        {/* Title */}
         <Link href={`/deal/${id}`}>
-          <h3 className="font-semibold text-lg mb-1 line-clamp-2 hover:text-indigo-600 transition-colors">
+          <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors">
             {title}
           </h3>
         </Link>
-        {/* Price info */}
+
+        {/* Price */}
         <div className="flex items-baseline mb-2">
-          <span className="text-xl font-bold text-indigo-600">
-            ${dealPrice}
-          </span>
-          <span className="text-sm text-gray-500 line-through ml-2">
-            ${originalPrice}
-          </span>
+          <span className="text-2xl font-bold text-indigo-600">${dealPrice.toFixed(2)}</span>
+          <span className="text-sm text-gray-400 line-through ml-2">${originalPrice.toFixed(2)}</span>
         </div>
+
         {/* Description */}
         <p className="text-gray-600 text-sm mb-3 line-clamp-2">{description}</p>
-        {/* Coupon code if available */}
-        {couponCode && <div className="flex items-center mb-3 bg-gray-100 rounded p-2">
-            <span className="text-xs font-medium text-gray-600 mr-2">
-              Code:
+
+        {/* Coupon */}
+        {couponCode && (
+          <div className="mb-3">
+            <span className="inline-flex items-center text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded">
+              Code: <span className="ml-1 font-mono bg-white px-2 py-0.5 rounded border">{couponCode}</span>
             </span>
-            <span className="text-sm font-mono bg-white px-2 py-1 border border-gray-300 rounded">
-              {couponCode}
-            </span>
-          </div>}
-        {/* Deal footer */}
-        <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
-          <div className="flex items-center text-sm text-gray-500">
-            <Clock className="h-4 w-4 mr-1" />
+          </div>
+        )}
+
+        {/* Footer: Timer + Popularity */}
+        <div className="flex justify-between items-center text-xs text-gray-500 mt-4 pt-3 border-t border-gray-100">
+          <div className="flex items-center">
+            <Clock className="h-3.5 w-3.5 mr-1" />
             <DealCountdown expiryDate={expiryDate} />
           </div>
-          <div className="flex items-center text-sm text-gray-500">
-            <ThumbsUp className="h-4 w-4 mr-1" />
+          <div className="flex items-center">
+            <ThumbsUp className="h-3.5 w-3.5 mr-1" />
             <span>{popularity}</span>
           </div>
         </div>
-        {/* Action button */}
-        <a href={`/out/${id}`} target="_blank" rel="noopener noreferrer" className="mt-4 block w-full bg-indigo-600 hover:bg-indigo-700 text-white text-center py-2 rounded-md font-medium transition-colors duration-300 flex items-center justify-center">
+
+        {/* CTA Button */}
+        <a
+          href={`/out/${id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors flex items-center justify-center text-sm"
+        >
           Get Deal <ExternalLink className="h-4 w-4 ml-1" />
         </a>
       </div>
-    </div>;
+    </div>
+  );
 };

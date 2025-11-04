@@ -58,7 +58,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
             </Link>
             <div className="flex items-center mb-4">
               <Link
-                href={`/blogs/category/${post.category.toLowerCase().replace(/\s+/g, '-')}`}
+                href={`/blogs/${post.category.toLowerCase().replace(/\s+/g, '-')}`}
                 className="text-xs font-semibold text-indigo-200 uppercase tracking-wider hover:text-indigo-100"
               >
                 {post.category}
@@ -187,14 +187,14 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
 
                 {/* Article Navigation (static for demo) */}
                 <div className="flex justify-between border-t border-b border-gray-200 py-4 mb-8">
-                  <Link href={`/blogs/${blogPosts[0]?.slug || ''}`} className="flex items-center text-gray-700 hover:text-indigo-600">
+                  <Link href={`/blogs/${blogPosts[0]?.category.toLowerCase().replace(/\s+/g, '-')}/${blogPosts[0]?.slug || ''}`} className="flex items-center text-gray-700 hover:text-indigo-600">
                     <ChevronLeft className="h-5 w-5 mr-1" />
                     <div>
                       <div className="text-xs text-gray-500">Previous Article</div>
                       <div className="font-medium">How to Find Black Friday Deals</div>
                     </div>
                   </Link>
-                  <Link href={`/blogs/${blogPosts[1]?.slug || ''}`} className="flex items-center text-right text-gray-700 hover:text-indigo-600">
+                    <Link href={`/blogs/${blogPosts[1]?.category.toLowerCase().replace(/\s+/g, '-')}/${blogPosts[1]?.slug || ''}`} className="flex items-center text-right text-gray-700 hover:text-indigo-600">
                     <div>
                       <div className="text-xs text-gray-500">Next Article</div>
                       <div className="font-medium">Smart Home Devices That Save Money</div>

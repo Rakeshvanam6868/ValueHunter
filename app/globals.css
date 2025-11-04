@@ -20,7 +20,31 @@
 }
 
 
+:root {
+  --background: 245 10% 97%;
+  --foreground: 24 10% 11%;
+  --text-secondary: 71 71% 40%;  /* #71717A */
+  --card: 0 0% 100%;
+  --card-foreground: 24 10% 11%;
+  --primary: 204 100% 60%;
+  --primary-foreground: 60 10% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 204 100% 60%;
+}
 
+.dark {
+  --background: 222 13% 9%;
+  --foreground: 60 10% 98%;
+  --text-secondary: 161 16% 50%; /* #A1A1AA */
+  --card: 222 13% 16%;
+  --card-foreground: 60 10% 98%;
+  --primary: 204 100% 60%;
+  --primary-foreground: 60 10% 98%;
+  --border: 217 19% 24%;
+  --input: 217 19% 24%;
+  --ring: 204 100% 60%;
+}
 
 @layer base {
   :root {

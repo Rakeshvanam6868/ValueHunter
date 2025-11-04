@@ -46,7 +46,7 @@ export default async function CategoryPage({
         </div>
 
         <div className="mt-8">
-          <Link href="/blog" className="text-indigo-600 hover:underline">
+          <Link href="/blogs" className="text-indigo-600 hover:underline">
             ← Back to Blog Homepage
           </Link>
         </div>

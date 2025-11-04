@@ -22,7 +22,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-gradient-to-r from-[#d4e0e6] to-[#e9dbdb] dark:from-[#141a1d] dark:to-[#0e0d0d] border-b border-border">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-md  bg-[#d4e0e6]/30  dark:bg-[#141a1d]/30  border-b ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-10 xl:px-14">
         <div className="flex items-center justify-between h-16">
           {/* Logo - Always Visible */}

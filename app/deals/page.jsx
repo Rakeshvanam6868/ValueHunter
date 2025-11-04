@@ -69,7 +69,6 @@ export default function Deals() {
 
   return (
     <>
-      <Hero/>
       <div className="min-h-screen bg-slate-50 dark:bg-black/30 transition-colors duration-300 px-6 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-[22%_76%] gap-8 mx-auto max-w-7xl">
         {/* Sidebar */}
